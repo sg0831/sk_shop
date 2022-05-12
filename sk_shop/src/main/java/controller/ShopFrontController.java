@@ -2,48 +2,43 @@ package controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ShopFrontController extends HttpServlet {
+import action.Action;
+import action.ShopActionFactory;
 
-	/**
-	 * 
-	 */
+public class ShopFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public void init() throws ServletException {
-		// TODO Auto-generated method stub
-		super.init();
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// form을 통해 넘어온 바이너리 데이터가 한글일 수도 있으므로 utf-8 인코딩 처리
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		
+		String commandPath = this.getCommandPath(req);
+		ShopActionFactory shopActionFactory = new ShopActionFactory();
+		Action action = shopActionFactory.getAction(commandPath);
+		action.execute(req, resp);
 	}
-
-	@Override
-	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doDelete(req, resp);
+	
+	private String getCommandPath(HttpServletRequest req) {
+		// 전체 경로
+			String uri = req.getRequestURI();
+			String commandPath = null;
+			int start_index = req.getContextPath().length();
+			int end_index = uri.length()-1;
+			
+			end_index = uri.indexOf(".");
+			
+			if (end_index != -1) {
+				commandPath = uri.substring(start_index, end_index);
+			}
+			
+			return commandPath;
 	}
-
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String path = "index.jsp";
-		RequestDispatcher dispatcher = req.getRequestDispatcher(path);
-		dispatcher.forward(req, resp);
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
-	}
-
-	@Override
-	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPut(req, resp);
-	}
-
+	
 }

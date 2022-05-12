@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//src/main/java/action/Action.java=UTF-8
+encoding//src/main/java/action/CreateItemAction.java=UTF-8
+encoding//src/main/java/action/IndexAction.java=UTF-8
+encoding//src/main/java/controller/ShopFrontController.java=UTF-8
+encoding//src/main/webapp/WEB-INF/create_item_form.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/index.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp_modules/footer.jspf=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp_modules/header.jspf=UTF-8
+encoding/<project>=UTF-8
