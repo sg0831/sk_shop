@@ -6,12 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class DbConnectionUtil {
-	private static String driver = "oracle.jdbc.OracleDriver";
-	private static String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	private static String user = "seungkyun";
-	private static String pw = "wkwjsrj1";
 	
 	public static Connection getConnection() {
+		String driver = "oracle.jdbc.OracleDriver";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "seungkyun";
+		String pw = "wkwjsrj1";
+		
 		Connection conn = null;
 		
 		try {
@@ -21,6 +22,7 @@ public class DbConnectionUtil {
 			e.printStackTrace();
 		}
 		
+		if (conn == null) System.out.println("Connection 실패");
 		return conn;
 	}
 	

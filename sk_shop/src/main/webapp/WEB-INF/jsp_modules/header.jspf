@@ -1,5 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<% String login_btn = "로그인";
+String login_btn_url = "/signIn.shop";
+boolean is_login = false;
+if (session.getAttribute("is_login") != null) {
+	is_login = (boolean)session.getAttribute("is_login");
+} if (is_login) {
+	login_btn = "로그아웃";
+	login_btn_url = "/signOut.shop";
+} %>
+
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +33,7 @@
 		</div>
 		
 		<div id="user-action-box">
-			<a href="/signIn.shop" id="sign-in">로그인</a>
+			<a href='<%= login_btn_url %>' id="sign-in"><%= login_btn %></a>
 			<a href="/myPage.shop" id="my-page">마이 페이지</a>
 		</div>
 		<div id="cart-box">

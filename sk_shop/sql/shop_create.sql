@@ -10,7 +10,7 @@ CREATE TABLE SHOP_USERS(
   -- 특정 주소 등록을 원치 않는 유저들을 고려하여 NULL 허용
   address  varchar2(500),
   -- 일반유저 || 쇼핑몰 운영 관리자 || 최고 관리자 등 유저의 권한
-  user_permission  varchar2(10)  NOT NULL
+  user_permission  varchar2(10)  DEFAULT 'NO'  NOT NULL
 );
 
 
