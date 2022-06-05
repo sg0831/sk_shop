@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.skShop.mapper.ItemMapper">
+
+	<insert id="insert">
+		INSERT INTO shop_items(
+		ITEM_CODE, ITEM_NAME, PRICE, COLOR, ITEM_SIZE, ITEM_COUNT, CATEGORY, ITEM_IMG
+		)
+		VALUES (
+		#{item_code}, #{item_name}, #{price}, #{color}, #{item_size}, #{item_count},
+		#{category}, #{item_img}
+		)
+	</insert>
+
+	<select id="selectAll" resultType="com.skShop.domain.ItemDto">
+		SELECT * FROM shop_items
+	</select>
+	
+	
+	<select id="selectBestTop10" resultType="com.skShop.domain.ItemDto">
+		SELECT O.* FROM (
+			SELECT I.* FROM shop_items I
+			ORDER BY I.buyed_count DESC
+		) O
+		WHERE <![CDATA[ rownum <= 10 ]]>
+	</select>
+	
+	<select id="selectManBestTop10" resultType="com.skShop.domain.ItemDto">
+		SELECT O.* FROM (
+			SELECT I.* FROM shop_items I
+			WHERE category LIKE '%남성%'
+			ORDER BY I.buyed_count DESC
+		) O
+		WHERE <![CDATA[ rownum <= 10 ]]>
+	</select>
+	
+		<select id="selectWomanBestTop10" resultType="com.skShop.domain.ItemDto">
+		SELECT O.* FROM (
+			SELECT I.* FROM shop_items I
+			WHERE category LIKE '%여성%'
+			ORDER BY I.buyed_count DESC
+		) O
+		WHERE <![CDATA[ rownum <= 10 ]]>
+	</select>
+
+	<select id="selectOne" resultType="com.skShop.domain.ItemDto">
+		SELECT * FROM shop_items
+		where item_code = #{item_code}
+	</select>
+
+	<update id="update">
+		UPDATE shop_items SET
+		item_code = #{item_code},
+		item_name = #{item_name},
+		price = #{price},
+		color = #{color},
+		item_size = #{item_size},
+		item_count = #{item_count},
+		category = #{category},
+		item_img = #{item_img}
+		WHERE item_code = #{item_code}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM shop_items
+		WHERE item_code = #{item_code}
+	</delete>
+</mapper>

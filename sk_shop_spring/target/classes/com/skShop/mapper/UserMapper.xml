@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="com.skShop.mapper.UserMapper">
+	<insert id="insert">
+		INSERT INTO shop_users(
+			user_id, user_pw, user_name, email, phone_number, address, user_permission
+		) VALUES (
+			#{user_id}, #{user_pw}, #{user_name}, #{email}, #{phone_number}, #{address}, #{user_permission}
+		)
+	</insert>
+	
+			<select id="selectAll" resultType="com.skShop.domain.UserDto">
+			SELECT * FROM shop_users
+		</select>
+		
+		<select id="selectOne" resultType="com.skShop.domain.UserDto">
+			SELECT * FROM shop_users
+			where user_id = #{user_id}
+		</select>
+	
+	<update id="update">
+		UPDATE shop_users SET
+			user_id = #{user_id},
+			user_pw = #{user_pw},
+			user_name = #{user_name},
+			email = #{email},
+			phone_number = #{phone_number},
+			address = #{address},
+			user_permission = #{user_permission}
+		WHERE user_id = #{user_id}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM shop_users
+		WHERE user_id = #{user_id}
+	</delete>
+	</mapper>

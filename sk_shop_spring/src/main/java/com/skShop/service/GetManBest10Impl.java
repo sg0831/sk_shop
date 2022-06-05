@@ -1,0 +1,26 @@
+package com.skShop.service;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import com.skShop.domain.ItemDto;
+import com.skShop.mapper.ItemMapper;
+import com.skShop.serviceInterface.GetManBest10;
+
+@Service
+public class GetManBest10Impl implements GetManBest10 {
+	@Autowired
+	private ItemMapper itemMapper;
+
+	@Override
+	public void service(HttpServletRequest req, Model model) {
+		List<ItemDto> data = itemMapper.selectManBestTop10();
+		model.addAttribute("manBest10", data);
+	}
+
+}
