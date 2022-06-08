@@ -31,7 +31,7 @@ public class SignInPOSTImpl implements SignInPOST {
 				// 로그인 성공 
 				model.addAttribute("login_success", 1);
 				// session의 로그인 상태 활성화
-				session.setAttribute("is_login", true);
+				session.setAttribute("login_user", user);
 				return ;
 			}
 		}

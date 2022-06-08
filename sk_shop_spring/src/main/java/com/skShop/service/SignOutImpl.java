@@ -3,6 +3,7 @@ package com.skShop.service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.jdbc.Null;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -14,8 +15,8 @@ public class SignOutImpl implements SignOut {
 	@Override
 	public void service(HttpServletRequest req, Model model) {
 		HttpSession session = req.getSession();
-		if (session.getAttribute("is_login") != null) {
-			session.setAttribute("is_login", false);
+		if (session.getAttribute("login_user") != null) {
+			session.setAttribute("is_login", null);
 		}
 	}
 	

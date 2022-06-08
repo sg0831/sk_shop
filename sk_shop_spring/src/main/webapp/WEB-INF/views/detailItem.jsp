@@ -17,4 +17,6 @@
 <span>상품 잔량 : ${ detailItem.item_count }</span><br/>
 <span>상품 구매수 : ${ detailItem.buyed_count }</span>
 
+<a href="/newOrder?item_code=${ detailItem.item_code }">주문하기</a>
+
 <%@ include file="jsp_modules/footer.jspf" %>

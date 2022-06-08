@@ -4,8 +4,8 @@
 <% String login_btn = "로그인";
 String login_btn_url = "/signIn";
 boolean is_login = false;
-if (session.getAttribute("is_login") != null) {
-	is_login = (boolean)session.getAttribute("is_login");
+if (session.getAttribute("login_user") != null) {
+	is_login = true;
 } if (is_login) {
 	login_btn = "로그아웃";
 	login_btn_url = "/signOut";
